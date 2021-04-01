@@ -18,7 +18,7 @@ const validationSchema = yup.object({
   title: yup.string("Enter your Note Title").required("Note Title is required"),
   detail: yup
     .string("Enter your Note Detail")
-    .min(10, "Minimum 10 characters are required")
+    .min(80, "Minimum 80 characters are required")
     .required("Note Detail is required"),
   type: yup.string("Select your Note Type").required("Note Type is required"),
 });
@@ -41,7 +41,7 @@ const Create = () => {
     },
     validationSchema: validationSchema,
     onSubmit: ({ title, detail, type }) => {
-      fetch("/api/notes/", {
+      fetch("https://cool-json-server.herokuapp.com/notes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

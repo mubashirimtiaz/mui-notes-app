@@ -3,25 +3,28 @@ import Container from "@material-ui/core/Container";
 import Card from "../../components/card/Card.component";
 import Masonry from "react-masonry-css";
 import styles from "./notes.module.css";
-const breakpointColumnsObj = {
-  default: 3,
-  1100: 2,
-  700: 1,
-};
+
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   useEffect(() => {
-    fetch("/api/notes")
+    fetch("https://cool-json-server.herokuapp.com/notes/")
       .then((res) => res.json())
       .then((data) => setNotes(data));
   }, []);
   const deleteNote = (id) => {
-    fetch(`/api/notes?id=${id}`).then(() => {
+    fetch("https://cool-json-server.herokuapp.com/" + id, {
+      method: "DELETE",
+    }).then(() => {
       const newNotes = notes.filter((note) => note.id !== id);
       setNotes(newNotes);
     });
   };
-
+  const breakpointColumnsObj = {
+    default: 3,
+    1100: 2,
+    700: 1,
+  };
+  console.log(styles);
   return (
     <Container>
       <Masonry
