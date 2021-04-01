@@ -3,7 +3,11 @@ import Container from "@material-ui/core/Container";
 import Card from "../../components/card/Card.component";
 import Masonry from "react-masonry-css";
 import styles from "./notes.module.css";
-
+const breakpointColumnsObj = {
+  default: 3,
+  1100: 2,
+  700: 1,
+};
 const Notes = () => {
   const [notes, setNotes] = useState([]);
   useEffect(() => {
@@ -17,12 +21,7 @@ const Notes = () => {
       setNotes(newNotes);
     });
   };
-  const breakpointColumnsObj = {
-    default: 3,
-    1100: 2,
-    700: 1,
-  };
-  console.log(styles);
+
   return (
     <Container>
       <Masonry
